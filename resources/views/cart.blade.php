@@ -59,16 +59,14 @@
                                     </p>
                                 </div>
                                 <div class="col-1 my-5">
-                                    <select name="quantity" id="">
-                                        <option value="1" selected>1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                        <option value="4">4</option>
-                                        <option value="5">5</option>
+                                    <select class="quantity" data-id="{{ $item->rowId }}" data-productQuantity="{{ $item->model->quantity }}">
+                                        @for ($i = 1; $i < 10 + 1 ; $i++)
+                                            <option {{ $item->qty == $i ? 'selected' : '' }}>{{ $i }}</option>
+                                        @endfor
                                     </select>
                                 </div>
                                 <div class="col-2 my-5">
-                                    {{ $item->model->presentPrice() }}
+                                    {{ presentPrice($item->subtotal()) }}
                                 </div>
                             </div>
                         @endforeach
@@ -153,4 +151,36 @@
     <div class="container my-3">
         @include('partials.might-like')
     </div>
+@endsection
+
+@section('extra-js')
+    <script src="{{ asset('js/app.js') }}"></script>
+    <script>
+        /**
+         * 
+         */
+        (function() {
+            const classname = document.querySelectorAll('.quantity')
+
+            Array.from(classname).forEach(function(element) {
+                element.addEventListener('change', function() {
+                    const id = element.getAttribute('data-id')
+                    const productQuantity = element.getAttribute('data-productQuantity')
+
+                    axios.patch(`cart/${id}`, {
+                        quantity: this.value,
+                        productQuantity: productQuantity
+                    })
+                    .then(function (response) {
+                        // console.log(response);
+                        window.location.href = '{{ route("cart.index") }}'
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                        window.location.href = '{{ route("cart.index") }}'
+                    });
+                })
+            })
+        })();
+    </script>
 @endsection
