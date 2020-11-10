@@ -10953,3 +10953,17 @@ a.text-dark:focus {
   cursor: not-allowed;
 }
 
+.price-range a {
+  color: grey;
+  text-decoration: none;
+}
+
+.price-range a:hover {
+  font-weight: bold;
+  color: black;
+}
+
+.active {
+  font-weight: bold;
+}
+

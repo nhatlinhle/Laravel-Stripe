@@ -14,7 +14,7 @@ class WelcomeController extends Controller
      */
     public function index()
     {
-        $products = Product::inRandomOrder()->take(8)->get();
+        $products = Product::where('featured', true)->take(8)->get();
         return view('welcome', compact('products'));
     }
 }

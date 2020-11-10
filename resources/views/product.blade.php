@@ -14,7 +14,7 @@
     <div class="container">
         <div class="row my-5">
             <div class="col-6">
-                <img class="border rounded" src="/storage/image.jpg" alt="product" height="100%" width="100%">
+                <img class="border rounded" src="/storage/{{$product->slug}}.jpg" alt="product" height="100%" width="100%">
             </div>
             <div class="col-4 offset-2">
                 <h1 class="mb-5"><strong>{{ $product->name }}</strong></h1>

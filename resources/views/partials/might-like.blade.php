@@ -5,7 +5,7 @@
             @foreach($mightAlsoLike as $product)
                 <div class="col-3">
                     <a href="{{ route('shop.show', $product->slug) }}" class="might-like-product">
-                        <img class="border rounded" src="/storage/image.jpg" alt="product" height="75%" width="100%">
+                        <img class="border rounded" src="/storage/{{$product->slug}}.jpg" alt="product" height="75%" width="100%">
                         <div class="might-like-product-name"><p style="color: black;">
                             {{ $product->name }}
                         </p></div>

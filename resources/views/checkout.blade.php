@@ -112,16 +112,17 @@
                     @foreach(Cart::instance('default')->content() as $item)
                         <div class="row border-top border-bottom">
                             <div class="col-4 my-2">
-                                <img src="/storage/image.jpg" alt="item" height="100%" width="100%">
+                                <img src="/storage/{{$item->model->slug}}.jpg" alt="item" height="100%" width="100%">
                             </div>
-                            <div class="col-2 my-2">
+                            <div class="col-6 my-2">
                                 <p>{{ $item->model->name }}</p>
-                            </div>
-                            <div class="col-4 my-2">
                                 <p>{{ $item->model->details }}</p>
-                            </div>
-                            <div class="col-2 my-2">
                                 <p>{{ $item->model->presentPrice() }}</p>
+                            </div>
+                            <div class="col-2 my-auto text-center">
+                                <div class="border">
+                                    {{ $item->qty }}
+                                </div>
                             </div>
                         </div>
                     @endforeach
@@ -129,10 +130,39 @@
                 <div class="row my-3" style="background-color: #F5F5F5">
                     <div class="col-12">
                         <div class="text-right">
-                                Subtotal: {{ presentPrice(Cart::subtotal()) }}<br>
-                                Tax: {{ presentPrice(Cart::tax()) }}<br>
-                                <div class="font-weight-bold">Total: {{ presentPrice(Cart::total()) }}</div>
+                                <div class="row">
+                                    <div class="col-12">
+                                        Subtotal: {{ presentPrice(Cart::subtotal()) }}<br>
+                                    </div>
+                                    <div class="col-12">
+                                        @if(session()->get('coupon'))
+                                            Discount ( {{ session()->get('coupon')['name'] }} ): 
+                                            {!! Form::open(['action' => 'CouponsController@destroy', 'method' => 'DELETE']) !!}
+                                                {{ Form::submit('&times;', ['style' => 'color:red;border:none;text-decoration:none;font-size:10px;']) }}
+                                            {!! Form::close() !!}
+                                            -{{ presentPrice(session()->get('coupon')['discount']) }} <br>
+                                        @endif
+                                    </div>
+                                    <div class="col-12">
+                                        Tax: {{ presentPrice(Cart::tax()) }}<br>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="font-weight-bold">Total: {{ presentPrice(Cart::total()) }}</div>
+                                    </div>
+                                </div>
                         </div>
+                    </div>
+                </div>
+                <hr>
+                <div class="row my-3">
+                    <div class="col-12">
+                        <p>Have a code?</p>
+                    </div>
+                    <div class="col-12 form-group">
+                        {!! Form::open(['action' => 'CouponsController@store', 'method' => 'POST']) !!}
+                            {{ Form::text('code', '', ['class' => 'form-control', 'id' => 'coupon_code', 'placeholder' => 'e.g. Discount']) }}
+                            {{ Form::submit('Apply', ['class' => 'btn btn-outline-secondary btn-block mt-4']) }}
+                        {!! Form::close() !!}
                     </div>
                 </div>
             </div>

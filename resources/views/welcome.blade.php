@@ -27,7 +27,7 @@
         <div class="row">
             @foreach($products as $product)
                 <div class="col-3 my-5">
-                    <a href="/shop/{{$product->slug}}"><img class="mx-auto d-block" height="100%" width="100%" src="/storage/image.jpg" alt="product"></a>
+                    <a href="/shop/{{$product->slug}}"><img class="mx-auto d-block" height="100%" width="100%" src="/storage/{{$product->slug}}.jpg" alt="product"></a>
                     <a href="/shop/{{$product->slug}}"><div class="product-name">{{ $product->name }}</div></a>
                     <div class="product-price">{{ $product->presentPrice() }}</div>
                 </div>

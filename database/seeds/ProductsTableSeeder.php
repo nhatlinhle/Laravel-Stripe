@@ -12,104 +12,84 @@ class ProductsTableSeeder extends Seeder
      */
     public function run()
     {
-        //
-        Product::create([
-            'name' => 'Laptop 1',
-            'slug' => 'laptop-1',
-            'details' => '15 inch, 1TB, 8GB RAM',
-            'price' => 149999,
-            'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent aliquet justo eu vulputate facilisis. Aenean luctus ultricies pretium. Curabitur et.',
-        ]);
-        Product::create([
-            'name' => 'Laptop 2',
-            'slug' => 'laptop-2',
-            'details' => '15 inch, 1TB, 16GB RAM',
-            'price' => 249999,
-            'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent aliquet justo eu vulputate facilisis. Aenean luctus ultricies pretium. Curabitur et.',
-        ]);
-        Product::create([
-            'name' => 'Laptop 3',
-            'slug' => 'laptop-3',
-            'details' => '15 inch, 1TB, 32GB RAM',
-            'price' => 299999,
-            'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent aliquet justo eu vulputate facilisis. Aenean luctus ultricies pretium. Curabitur et.',
-        ]);
-        Product::create([
-            'name' => 'Laptop 4',
-            'slug' => 'laptop-4',
-            'details' => '15 inch, 1TB, 64GB RAM',
-            'price' => 319999,
-            'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent aliquet justo eu vulputate facilisis. Aenean luctus ultricies pretium. Curabitur et.',
-        ]);
-        Product::create([
-            'name' => 'Laptop 5',
-            'slug' => 'laptop-5',
-            'details' => '15 inch, 2TB, 8GB RAM',
-            'price' => 279999,
-            'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent aliquet justo eu vulputate facilisis. Aenean luctus ultricies pretium. Curabitur et.',
-        ]);
-        Product::create([
-            'name' => 'Laptop 6',
-            'slug' => 'laptop-6',
-            'details' => '17.5 inch, 2TB, 16GB RAM',
-            'price' => 399999,
-            'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent aliquet justo eu vulputate facilisis. Aenean luctus ultricies pretium. Curabitur et.',
-        ]);
-        Product::create([
-            'name' => 'Laptop 7',
-            'slug' => 'laptop-7',
-            'details' => '17 inch, 4TB, 8GB RAM',
-            'price' => 329999,
-            'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent aliquet justo eu vulputate facilisis. Aenean luctus ultricies pretium. Curabitur et.',
-        ]);
-        Product::create([
-            'name' => 'Laptop 8',
-            'slug' => 'laptop-8',
-            'details' => '17.5 inch, 4TB, 32GB RAM',
-            'price' => 599999,
-            'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent aliquet justo eu vulputate facilisis. Aenean luctus ultricies pretium. Curabitur et.',
-        ]);
-        Product::create([
-            'name' => 'Laptop 9',
-            'slug' => 'laptop-9',
-            'details' => '17.5 inch, 2TB, 32GB RAM',
-            'price' => 399999,
-            'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent aliquet justo eu vulputate facilisis. Aenean luctus ultricies pretium. Curabitur et.',
-        ]);
-        Product::create([
-            'name' => 'Laptop 10',
-            'slug' => 'laptop-10',
-            'details' => '17 inch, 568GB, 32GB RAM',
-            'price' => 129999,
-            'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent aliquet justo eu vulputate facilisis. Aenean luctus ultricies pretium. Curabitur et.',
-        ]);
-        Product::create([
-            'name' => 'Laptop 11',
-            'slug' => 'laptop-11',
-            'details' => '12 inch, 1TB, 8GB RAM',
-            'price' => 99999,
-            'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent aliquet justo eu vulputate facilisis. Aenean luctus ultricies pretium. Curabitur et.',
-        ]);
-        Product::create([
-            'name' => 'Laptop 12',
-            'slug' => 'laptop-12',
-            'details' => '17.5 inch, 2TB, 16GB RAM',
-            'price' => 399999,
-            'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent aliquet justo eu vulputate facilisis. Aenean luctus ultricies pretium. Curabitur et.',
-        ]);
-        Product::create([
-            'name' => 'Laptop 13',
-            'slug' => 'laptop-13',
-            'details' => '17 inch, 16TB, 8GB RAM',
-            'price' => 329999,
-            'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent aliquet justo eu vulputate facilisis. Aenean luctus ultricies pretium. Curabitur et.',
-        ]);
-        Product::create([
-            'name' => 'Laptop 14',
-            'slug' => 'laptop-14',
-            'details' => '17.5 inch, 8TB, 32GB RAM',
-            'price' => 599999,
-            'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent aliquet justo eu vulputate facilisis. Aenean luctus ultricies pretium. Curabitur et.',
-        ]);
+        // Loop to Generate Laptops
+        for($i = 1; $i < 30; $i++) {
+            Product::create([
+                'name' => 'Laptop '.$i,
+                'slug' => 'laptop-'.$i,
+                'details' => [13,14,15][array_rand([13,14,15])] .' inch, '.[1,2,3][array_rand([1,2,3])] .' TB SSD, 32GB RAM',
+                'price' => rand(149999,329999),
+                'description' => 'Lorem '. $i .' ipsum dolor sit amet, consectetur adipiscing elit. Praesent aliquet justo eu vulputate facilisis. Aenean luctus ultricies pretium. Curabitur et.',
+            ])->categories()->attach(1);
+        }
+
+        $product = Product::find(1);
+        $product->categories()->attach(2);
+
+        // Desktops
+        for($i = 1; $i < 9; $i++) {
+            Product::create([
+                'name' => 'Desktop '.$i,
+                'slug' => 'desktop-'.$i,
+                'details' => [24,25,26][array_rand([24,25,26])] .' inch, '. [1,2,3][array_rand([1,2,3])] .'TB SSD, 32GB RAM',
+                'price' => rand(249999,479999),
+                'description' => 'Lorem '. $i .' ipsum dolor sit amet, consectetur adipiscing elit. Praesent aliquet justo eu vulputate facilisis. Aenean luctus ultricies pretium. Curabitur et.',
+            ])->categories()->attach(2);
+        }
+
+        // Phones
+        for($i = 1; $i < 6; $i++) {
+            Product::create([
+                'name' => 'Phone '.$i,
+                'slug' => 'phone-'.$i,
+                'details' => [8,9,10][array_rand([8,9,10])] .' inch, '. [16,32,64][array_rand([16,32,64])] .'GB SSD',
+                'price' => rand(10000,40000),
+                'description' => 'Lorem '. $i .' ipsum dolor sit amet, consectetur adipiscing elit. Praesent aliquet justo eu vulputate facilisis. Aenean luctus ultricies pretium. Curabitur et.',
+            ])->categories()->attach(3);
+        }
+
+        // Tablet
+        for($i = 1; $i < 6; $i++) {
+            Product::create([
+                'name' => 'iPad '.$i,
+                'slug' => 'ipad-'.$i,
+                'details' => [14,15,16][array_rand([14,15,16])] .' inch, '. [16,32,64][array_rand([16,32,64])] .'GB SSD',
+                'price' => rand(20000,50000),
+                'description' => 'Lorem '. $i .' ipsum dolor sit amet, consectetur adipiscing elit. Praesent aliquet justo eu vulputate facilisis. Aenean luctus ultricies pretium. Curabitur et.',
+            ])->categories()->attach(4);
+        }
+
+        // TV
+        for($i = 1; $i < 6; $i++) {
+            Product::create([
+                'name' => 'TV '.$i,
+                'slug' => 'tv-'.$i,
+                'details' => [36,38,40][array_rand([36,38,40])] .' inch, HMDI, SMART TV',
+                'price' => rand(40000,1000000),
+                'description' => 'Lorem '. $i .' ipsum dolor sit amet, consectetur adipiscing elit. Praesent aliquet justo eu vulputate facilisis. Aenean luctus ultricies pretium. Curabitur et.',
+            ])->categories()->attach(5);
+        }
+
+        // Cameras
+        for($i = 1; $i < 6; $i++) {
+            Product::create([
+                'name' => 'Camera '.$i,
+                'slug' => 'camera-'.$i,
+                'details' => [28,38,48][array_rand([28,38,48])] .' mm IS Lens',
+                'price' => rand(49999,79999),
+                'description' => 'Lorem '. $i .' ipsum dolor sit amet, consectetur adipiscing elit. Praesent aliquet justo eu vulputate facilisis. Aenean luctus ultricies pretium. Curabitur et.',
+            ])->categories()->attach(6);
+        }
+
+        // Appliances
+        for($i = 1; $i < 6; $i++) {
+            Product::create([
+                'name' => 'Appliace '.$i,
+                'slug' => 'appliance-'.$i,
+                'details' => [0.8,1.0,1.2][array_rand([0.8,1.0,1.2])] .' litres capacity.',
+                'price' => rand(2999,6999),
+                'description' => 'Lorem '. $i .' ipsum dolor sit amet, consectetur adipiscing elit. Praesent aliquet justo eu vulputate facilisis. Aenean luctus ultricies pretium. Curabitur et.',
+            ])->categories()->attach(7);
+        }
     }
 }
