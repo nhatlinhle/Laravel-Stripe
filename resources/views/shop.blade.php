@@ -25,7 +25,7 @@
                             @endforeach
                         </ul>
                     </nav>
-                    <!-- <nav class="navbar navbar-light bg-light">
+                    {{-- <nav class="navbar navbar-light bg-light">
                         <ul class="navbar-nav">
                             <li class="nav-item">
                                 <p class="navbar-brand">By Price: </p>
@@ -40,7 +40,7 @@
                                 <a href="#" class="nav-link">£2500+</a>
                             </li>
                         </ul>
-                    </nav> -->
+                    </nav> --}}
                 </div>
             </div>
             <div class="col" id="main">

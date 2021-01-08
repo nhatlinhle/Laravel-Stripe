@@ -140,14 +140,16 @@
                                             {!! Form::open(['action' => 'CouponsController@destroy', 'method' => 'DELETE']) !!}
                                                 {{ Form::submit('&times;', ['style' => 'color:red;border:none;text-decoration:none;font-size:10px;']) }}
                                             {!! Form::close() !!}
-                                            -{{ presentPrice(session()->get('coupon')['discount']) }} <br>
+                                            -{{ presentPrice($discount) }} <br>
+                                            <hr>
+                                            New Subtotal: {{ presentPrice($newSubtotal)}}
                                         @endif
                                     </div>
                                     <div class="col-12">
-                                        Tax: {{ presentPrice(Cart::tax()) }}<br>
+                                        Tax: {{ presentPrice($newTax) }}<br>
                                     </div>
                                     <div class="col-12">
-                                        <div class="font-weight-bold">Total: {{ presentPrice(Cart::total()) }}</div>
+                                        <div class="font-weight-bold">Total: {{ presentPrice($newTotal) }}</div>
                                     </div>
                                 </div>
                         </div>

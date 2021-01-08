@@ -26,6 +26,8 @@ class CouponsController extends Controller
 
     //Destroy a coupon
     public function destroy() {
+        session()->forget('coupon');
 
+        return redirect()->route('checkout.index')->with('success', 'Your coupon has been removed!');
     }
 }
