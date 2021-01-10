@@ -58,15 +58,37 @@
                                 </li>
                             @endif
                         @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
+                            <div class="d-flex">
+                                @if(Auth::user()->hasPermission('browse_admin'))
+                                    <a href="/admin" class="dropdown-item">
+                                        Dashboard
+                                    </a>
+                                @endif
+                                <a class="dropdown-item" href="{{ route('logout') }}"
+                                onclick="event.preventDefault();
+                                                document.getElementById('logout-form').submit();">
+                                    {{ __('Logout') }}
                                 </a>
 
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                    @csrf
+                                </form>
+                            </div>
+
+                            {{-- <div class="btn-group dropright">
+                                <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    {{Auth::user()->name}}
+                                </button>
+                                <div class="dropdown-menu">
+                                    <!-- Dropdown menu links -->
+                                    @if(Auth::user()->hasPermission('browse_admin'))
+                                        <a href="#" class="dropdown-item">
+                                            Dashboard
+                                        </a>
+                                    @endif
                                     <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
+                                        onclick="event.preventDefault();
+                                                    document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
 
@@ -74,7 +96,8 @@
                                         @csrf
                                     </form>
                                 </div>
-                            </li>
+                            </div> --}}
+
                         @endguest
                     </ul>
                 </div>
