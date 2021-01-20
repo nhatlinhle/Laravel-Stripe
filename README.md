@@ -8,3 +8,7 @@
 <p>You can keep a tally of items in your basket</p>
 <p>You can apply discount codes at checkout, either fixed price or discount percentage</p>
 <p>You can successfully checkout with stripes payment interface</p>
+
+## Live Example
+<p><a href="https://ecommerce.jlcwd.me">View Here</a></p>
+<p><strong>!!!PLEASE DO NOT SUBMIT REAL CREDIT CARD INFORMATION!!!</strong></p>

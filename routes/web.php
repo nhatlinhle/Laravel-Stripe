@@ -18,7 +18,7 @@ Route::get('/', 'WelcomeController@index')->name('index');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/logout', 'LoginController@logout')->name('logout')->middleware('auth');
 
 Route::get('/shop', 'ShopController@index')->name('shop.index');
 Route::get('/shop/{product}', 'ShopController@show')->name('shop.show');
